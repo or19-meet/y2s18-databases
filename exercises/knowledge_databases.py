@@ -16,23 +16,44 @@ def add_article(topic, wikiArticle, rating):
 	session.add(knowledge_object)
 	session.commit()
 		
-		
-add_article("rainbow","weather",9)
+	add_article("rainbow","weather",9)
 
 		
 	
 
 def query_all_articles():
-	pass
+	article1=session.query(
+		Knowledge).first()
+	return article1
+print(query_all_articles())
+	
 
-def query_article_by_topic():
-	pass
+def query_article_by_topic(topic):
+	topic1=session.query(
+		Knowledge).filter_by(topic=topic).first()
+	return topic1
+print(query_article_by_topic("Britain"))
+	
 
-def delete_article_by_topic():
-	pass
+def delete_article_by_topic(topic):
+	session.query(Knowledge).filter_by(
+		topic=topic).delete()
+	session.commit()
+
+	
 
 def delete_all_articles():
-	pass
+	session.query(Knowledge).delete()
+	session.commit()
+delete_all_articles()
 
-def edit_article_rating():
-	pass
+
+def edit_article_rating(update_rating,article_title):
+	article_object=session.query(
+		Knowledge).filter_by(
+		topic=article_title).first()
+	article_object.updated_rating=updated_rating
+	session.commit()
+edit_article_rating(11, "Britain")
+
+

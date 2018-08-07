@@ -20,6 +20,7 @@ class Knowledge(Base):
 				self.wikiArticle,
 				self.rating)
 		print(repr(Knowledge.__tablename__))
+		
 
 x= Knowledge(topic="Britain", wikiArticle="royal family", rating=10)
 print(x)
